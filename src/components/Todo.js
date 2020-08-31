@@ -4,15 +4,24 @@ const divStyle = {
     display: "flex"
 }
 
-function Todo({ todo }) {
+function Todo({ todo, toggleTodoComplete, removeTodo }) {
+
+    function handleToggleClick() {
+        toggleTodoComplete(todo.id);
+    }
+
+    function handleRemoveTodo() {
+        removeTodo(todo.id);
+    }
+
     return (
         <div style = {divStyle}>
-            <input type='checkbox'/>
+            <input type='checkbox' onClick={handleToggleClick}/>
             <li style = {{
                 color: "white",
                 textDecoration: todo.complete ? "line-through" : null
             }}>{todo.task}</li>
-            <button>X</button>
+            <button onClick={handleRemoveTodo}>X</button>
         </div>
     );
 }

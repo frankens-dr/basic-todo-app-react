@@ -22,6 +22,10 @@ function App() {
   function addTodo(todo) {
     setTodoState([todo, ...todoList]);
   }
+
+  function removeTodo(id) {
+    setTodoState(todoList.filter(todoItem => todoItem.id !== id));
+  }
   
   function toggleTodoComplete(id) {
     setTodoState(
@@ -32,6 +36,7 @@ function App() {
             complete : !todoItem.complete
           };
         }
+        return todoItem;
       })
     )
   }
@@ -39,9 +44,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>My Todo List</p>
+        <h1>My Todo List</h1>
         <TodoForm addTodo={addTodo} />
-        <TodoList todos={todoList} toggleTodoComplete={toggleTodoComplete} />
+        <TodoList 
+          todos={todoList} 
+          toggleTodoComplete={toggleTodoComplete} 
+          removeTodo={removeTodo}
+        />
       </header>
     </div>
   );
